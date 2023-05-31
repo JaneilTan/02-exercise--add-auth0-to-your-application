@@ -18,7 +18,9 @@ const App = () => {
       <Header />
       <div className="container">
         <Routes>
-          <Route path="/add" element={<AddProperty />} />
+          <Route path="/add" element={<ProtectedRoute />}>
+            <Route path="/add" element={<AddProperty />} />
+          </Route>
           <Route path="/" element={<Properties />} />
         </Routes>
       </div>
