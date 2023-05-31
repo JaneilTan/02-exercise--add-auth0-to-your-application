@@ -1,0 +1,45 @@
+.property-list,
+.property {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.property {
+  margin-bottom: 3rem;
+  box-shadow: 2px 2px 15px #ccc;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.property-text-container {
+  padding: 1rem 2rem;
+}
+
+.property-title {
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.property-address {
+  margin: 0 0 1rem;
+}
+
+.property-price {
+  background: #6246ea;
+  border-radius: 0.5rem;
+  display: inline-block;
+  color: #fff;
+  padding: 0.5rem;
+  margin: 0 0 1rem;
+}
+
+.property-description {
+  color: #666;
+}
+
+.no-properties {
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+}

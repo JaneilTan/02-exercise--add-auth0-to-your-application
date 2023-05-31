@@ -1,0 +1,49 @@
+{
+  "name": "02-ex-make-post-request-in-express",
+  "author": "Developers Institute",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "nodemon src/server.js",
+    "test": "jest --verbose ./src --setupFilesAfterEnv ./setupTests.js",
+    "test:watch": "jest ./src --watch --setupFilesAfterEnv ./setupTests.js",
+    "test:e2e": "jest --verbose ./e2e",
+    "lint:js": "eslint .",
+    "prettier:check": "prettier --check '**/*{.css,.html,.js}'",
+    "seed": "node seed/seedDocker.js",
+    "ci": "start-server-and-test 'node src/server.js' http://localhost:5001/properties test:e2e",
+    "docs": "serve e2e -p 8888"
+  },
+  "devDependencies": {
+    "axios": "^0.22.0",
+    "dotenv": "^10.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jest": "^24.5.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "jest": "^27.2.4",
+    "jest-openapi": "^0.14.0",
+    "lodash": "^4.17.21",
+    "mongodb-memory-server": "^7.4.2",
+    "prettier": "^2.4.1",
+    "serve": "^12.0.1",
+    "start-server-and-test": "^1.14.0",
+    "supertest": "^6.1.6"
+  },
+  "dependencies": {
+    "celebrate": "^15.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.8",
+    "nodemon": "^2.0.13"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/server.js",
+      "<rootDir>/node_modules/"
+    ]
+  }
+}

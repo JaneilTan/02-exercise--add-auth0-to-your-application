@@ -1,0 +1,35 @@
+form {
+  padding-bottom: 2rem;
+}
+
+label {
+  display: block;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.form-input {
+  padding: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid #999;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.submit-btn {
+  background: #6246ea;
+  border-radius: 0.5rem;
+  display: inline-block;
+  color: #fff;
+  padding: 1rem 2rem;
+  font-size: 1.3rem;
+  border: 2px solid #6246ea;
+  cursor: pointer;
+}
+
+.submit-btn:focus,
+.submit-btn:hover {
+  background: white;
+  color: #6246ea;
+}

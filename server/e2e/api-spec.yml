@@ -1,0 +1,287 @@
+openapi: 3.0.0
+info:
+  title: House Tricks
+  version: '1.0'
+  contact:
+    name: Lance Cooper
+    email: lance@developersinstitute.co.nz
+  description: Manage properties that are listed on the House Tricks application
+servers:
+  - url: 'http://localhost:5001'
+    description: Development
+paths:
+  /properties:
+    parameters: []
+    get:
+      summary: Retrieve all properties
+      tags: []
+      responses:
+        '200':
+          description: Properties found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Property'
+              examples:
+                example:
+                  value:
+                    - id: 616552ac49a895b7c0587ece
+                      description: 'An easy living, conveniently located, brick & tile home on a highly desirable street and surrounded by quality homes.'
+                      address: 123 fake street
+                      title: Another Different title
+                      img: 'https://placeimg.com/640/480/arch'
+                      askingPrice: 891822.26
+                      createdBy: auth0|myUserSub
+      operationId: get-properties
+      description: Retrieves a list of properties
+    post:
+      summary: Create property
+      operationId: post-properties
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Property'
+              examples:
+                Property example:
+                  value:
+                    id: 616552ac49a895b7c0587ece
+                    description: 'An easy living, conveniently located, brick & tile home on a highly desirable street and surrounded by quality homes.'
+                    address: 123 fake street
+                    title: Another Different title
+                    img: 'https://placeimg.com/640/480/arch'
+                    askingPrice: 891822.26
+                    createdBy: auth0|myUserSub
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                  error:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                  validation:
+                    type: object
+                    properties:
+                      body:
+                        type: object
+                        properties:
+                          source:
+                            type: string
+                            minLength: 1
+                          keys:
+                            type: array
+                            items:
+                              properties: {}
+                          message:
+                            type: string
+                            minLength: 1
+                        required:
+                          - source
+                          - keys
+                          - message
+                    required:
+                      - body
+                required:
+                  - statusCode
+                  - error
+                  - message
+                  - validation
+                x-examples:
+                  example-1:
+                    statusCode: 400
+                    error: Bad Request
+                    message: Validation failed
+                    validation:
+                      body:
+                        source: body
+                        keys:
+                          - address
+                        message: '"address" is required'
+              examples:
+                bad request:
+                  value:
+                    statusCode: 400
+                    error: Bad Request
+                    message: Validation failed
+                    validation:
+                      body:
+                        source: body
+                        keys:
+                          - title
+                        message: '"title" is required'
+        '401':
+          description: Unauthorized
+          content:
+            text/html:
+              schema:
+                type: string
+              examples:
+                example:
+                  value: 'UnauthorizedError: No authorization token was found'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                description:
+                  type: string
+                  minLength: 1
+                address:
+                  type: string
+                  minLength: 1
+                title:
+                  type: string
+                  minLength: 1
+                img:
+                  type: string
+                  minLength: 1
+                askingPrice:
+                  type: number
+              required:
+                - description
+                - address
+                - title
+                - img
+                - askingPrice
+              x-examples:
+                example-1:
+                  description: 'An easy living, conveniently located, brick & tile home on a highly desirable street and surrounded by quality homes.'
+                  address: 123 fake street
+                  title: Another Different title
+                  img: 'https://placeimg.com/640/480/arch'
+                  askingPrice: 891822.26
+        description: Create property
+      description: Create a new property
+  '/properties/{propertyId}':
+    parameters:
+      - schema:
+          type: string
+        name: propertyId
+        in: path
+        required: true
+        description: id of the property to read
+    get:
+      summary: Get single property
+      operationId: get-properties-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Property'
+              examples:
+                property:
+                  value:
+                    id: 616552ac49a895b7c0587ece
+                    description: 'An easy living, conveniently located, brick & tile home on a highly desirable street and surrounded by quality homes.'
+                    address: 123 fake street
+                    title: Another Different title
+                    img: 'https://placeimg.com/640/480/arch'
+                    askingPrice: 891822.26
+                    createdBy: auth0|myUserSub
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+                x-examples:
+                  example-1:
+                    error: invalid id
+              examples:
+                invalid id:
+                  value:
+                    error: invalid id
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+                x-examples:
+                  example-1:
+                    error: property not found
+              examples:
+                not found:
+                  value:
+                    error: property not found
+      description: Read a single property
+components:
+  schemas:
+    Property:
+      description: ''
+      type: object
+      x-examples:
+        Property example:
+          id: 616552ac49a895b7c0587ece
+          description: 'An easy living, conveniently located, brick & tile home on a highly desirable street and surrounded by quality homes.'
+          address: 123 fake street
+          title: Another Different title
+          img: 'https://placeimg.com/640/480/arch'
+          askingPrice: 891822.26
+          createdBy: auth0|myUserSub
+      title: ''
+      properties:
+        id:
+          type: string
+          minLength: 1
+        description:
+          type: string
+          minLength: 1
+        address:
+          type: string
+          minLength: 1
+        title:
+          type: string
+          minLength: 1
+        img:
+          type: string
+          minLength: 1
+        createdBy:
+          type: string
+          minLength: 1
+        askingPrice:
+          type: number
+      required:
+        - id
+        - description
+        - address
+        - title
+        - img
+        - createdBy
+        - askingPrice
+  securitySchemes: {}

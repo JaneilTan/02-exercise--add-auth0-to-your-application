@@ -1,0 +1,26 @@
+[
+  {
+    "askingPrice": 891822.26,
+    "description": "An easy living, conveniently located, brick & tile home on a highly desirable street and surrounded by quality homes.",
+    "address": "8 Shasta Pass",
+    "title": "A Beauty on Shasta",
+    "img": "https://placeimg.com/640/480/arch",
+    "_id": { "$oid": "61480db44ab0cf7175467757" }
+  },
+  {
+    "askingPrice": 876330.57,
+    "description": "Large Executive townhouse bordering On Town Centre",
+    "address": "2 Bowman Avenue",
+    "title": "Bowman Brilliance – Style and Value!",
+    "img": "https://placeimg.com/642/482/arch",
+    "_id": { "$oid": "61480db44ab0cf7175467755" }
+  },
+  {
+    "askingPrice": 946446.87,
+    "description": "Combining contemporary comforts with a functional layout",
+    "address": "8237 Moland Hill",
+    "title": "Rare Moland Hill Stunner",
+    "img": "https://placeimg.com/644/484/arch",
+    "_id": { "$oid": "61480db44ab0cf7175467756" }
+  }
+]
