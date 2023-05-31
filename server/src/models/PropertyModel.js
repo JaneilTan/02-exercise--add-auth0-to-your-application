@@ -7,6 +7,7 @@ const propertySchema = new Schema({
   address: { type: String, required: true },
   title: { type: String, required: true },
   img: { type: String, required: true },
+  createdBy: { type: String, required: true },
 });
 
 const Property = mongoose.model("Property", propertySchema);

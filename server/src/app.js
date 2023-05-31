@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
-const { celebrate, Joi, errors, Segments } = require("celebrate");
+const { celebrate, Joi, errors, Segments } = require('celebrate');
 const { auth } = require('express-oauth2-jwt-bearer');
 const PropertyModel = require("./models/PropertyModel");
 const formatProperty = require("./formatProperty");
@@ -9,7 +9,7 @@ const formatProperty = require("./formatProperty");
 const app = express();
 const checkJwt = auth({
   audience: 'https://housetricks.com',
-  issuerBaseURL: `https://dev-8r4cuew5h4u0t6ck.us.auth0.com/`,
+  issuerBaseURL: `https://dev-8r4cuew5h4u0t6ck.us.auth0.com`,
 });
 
 app.use(cors());
@@ -17,21 +17,25 @@ app.use(cors());
 app.use(express.json());
 
 app.post(
-  "/properties",
+  "/properties", 
   checkJwt,
   celebrate({
-    [Segments.BODY]: Joi.object({
+    [Segments.BODY]: Joi.object().keys({
       title: Joi.string().required(),
       description: Joi.string().required(),
       address: Joi.string().required(),
       img: Joi.string().required(),
-      askingPrice: Joi.number().required().min(0),
+      askingPrice: Joi.number().min(0).required(),
     })
   }),
   async (req, res, next) => {
     try {
-      const { body } = req;
-      const property = new PropertyModel(body);
+      const { body, auth } = req;
+      const propertyBody = {
+        createdBy: auth.payload.sub,
+        ...body
+      }
+      const property = new PropertyModel(propertyBody);
       await property.save();
       return res.status(201).send(formatProperty(property));
     } catch (error) {

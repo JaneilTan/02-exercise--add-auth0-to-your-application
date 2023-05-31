@@ -6,6 +6,7 @@ const formatProperty = (property) => {
     title: property.title,
     img: property.img,
     askingPrice: property.askingPrice,
+    createdBy: property.createdBy,
   };
 };
 
