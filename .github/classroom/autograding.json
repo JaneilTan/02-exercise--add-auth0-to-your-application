@@ -2,7 +2,7 @@
   "tests": [
     {
       "name": "server tests",
-      "setup": "npm install --legacy-peer-deps",
+      "setup": "npm install --prefix server",
       "run": "npm test --prefix server",
       "input": "",
       "output": "",
